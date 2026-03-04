@@ -1,0 +1,14 @@
+langchain
+langchain-google-genai
+langchain-community
+langchain-chroma
+rank_bm25
+cohere
+ragas
+datasets
+streamlit
+pyyaml
+pypdf
+docx2txt
+unstructured
+python-magic
