@@ -82,7 +82,7 @@ The system implements the following metrics for every generated response:
 
 1.  **Clone the repository**:
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/swaraj-khan/Prod-RAG.git
     cd Prod-RAG
     ```
 
@@ -92,7 +92,7 @@ The system implements the following metrics for every generated response:
     ```
 
 3.  **Configure Environment**:
-    Ensure `app/config.py` is set up or environment variables are exported:
+    Ensure environment variables are present:
     *   `GOOGLE_API_KEY`
     *   `COHERE_API_KEY`
 
