@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Prod-RAG is a production-grade Retrieval-Augmented Generation (RAG) system designed for high-precision domain-specific question answering. The architecture implements a hybrid retrieval strategy combining sparse and dense vector search, refined by a cross-encoder reranking step. The system enforces strict citation requirements in generated responses and integrates an automated evaluation pipeline using the Ragas framework.
+Prod-RAG is a production-grade Retrieval-Augmented Generation (RAG) system designed for high-precision domain-specific question answering. The architecture implements a hybrid retrieval strategy combining sparse and dense vector search, refined by a cross-encoder reranking step. The system enforces strict citation requirements in generated responses, integrates automated evaluation using Ragas, and includes observability through Langfuse for tracing prompts, token usage, latency, and cost across the pipeline.
 
 ## Technical Architecture
 
@@ -18,6 +18,7 @@ The application follows a modular pipeline architecture:
 5.  **Reranking Layer**: Applies a cross-encoder model (Cohere) to re-score retrieved documents based on semantic relevance to the query.
 6.  **Generation Layer**: Uses Google Gemini models with a strict system prompt to generate evidence-based answers with mandatory citations.
 7.  **Evaluation Layer**: Real-time assessment of generated responses using Ragas metrics.
+8.  **Observability Layer**: Integrates Langfuse to trace the RAG pipeline, tracking prompts, tokens used, LLM calls, latency, and input/output costs for full system monitoring.
 
 ## Technology Stack
 
@@ -29,6 +30,7 @@ The application follows a modular pipeline architecture:
 *   **Embedding Model**: Google Generative AI Embeddings
 *   **Reranking Service**: Cohere
 *   **Evaluation Framework**: Ragas
+*   **Observability & Tracing**: Langfuse
 *   **Document Processing**: `pypdf`, `docx2txt`, `unstructured`
 
 ## System Configuration
@@ -55,6 +57,21 @@ The system implements the following metrics for every generated response:
 
 1.  **Faithfulness**: Measures the factual consistency of the generated answer against the retrieved context.
 2.  **Answer Relevancy**: Measures how pertinent the generated answer is to the user's query.
+
+### Observability
+The system integrates Langfuse to provide full observability across the RAG pipeline.
+
+Langfuse is used to monitor and trace:
+
+- LLM prompts and responses
+- Retrieval results and context passed to the model
+- Input tokens and output tokens
+- Number of LLM calls per request
+- Input cost, output cost, and total cost of each generation
+- Latency for individual model calls and overall request execution
+- End-to-end traces across the full RAG pipeline
+
+This observability layer enables detailed debugging, performance monitoring, and cost tracking for the production RAG workflow.
 
 ## Application Interface
 
