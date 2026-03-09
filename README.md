@@ -60,15 +60,18 @@ The system implements the following metrics for every generated response:
 
 ### Main Interface
 
+## Demo
 
-![alt text](image.png)
+![alt text](RAG-Prod-V1.mp4)
+
+![alt text](UI-1.png)
 
 
 ### RAGAS Evaluation Metrics
 
-![alt text](image-1.png)
+![alt text](UI-2.png)
 
-![alt text](image-2.png)
+![alt text](UI-3.png)
 
 
 ## Installation and Execution

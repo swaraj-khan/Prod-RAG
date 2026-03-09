@@ -15,7 +15,7 @@ from app.ingestion.chunking import chunk_documents
 from app.ingestion.embed import ingest_documents, get_vectorstore, get_embeddings
 from app.chains.retrieval_chain import RetrievalChain
 from app.chains.rerank_chain import rerank
-from app.chains.generation_chain import generate_answer, llm
+from app.chains.generation_chain import generate_answer, llm, langfuse
 
 st.set_page_config(page_title="Prod-RAG", layout="wide")
 
@@ -121,6 +121,9 @@ if query := st.chat_input("Ask a question about your documents"):
             reranked_docs = rerank(query, retrieved_docs)
 
             answer = generate_answer(query, reranked_docs)
+
+            # Flush Langfuse traces to ensure they're sent
+            langfuse.flush()
 
             st.markdown(answer)
 

@@ -1,10 +1,16 @@
 import os
 import yaml
+from langfuse import get_client
+from langfuse.langchain import CallbackHandler
 from langchain_google_genai import ChatGoogleGenerativeAI
 from app.config import GOOGLE_API_KEY, LLM_MODEL
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import Runnable
 from langchain_core.output_parsers import StrOutputParser
+
+langfuse = get_client()
+
+langfuse_handler = CallbackHandler()
 
 llm = ChatGoogleGenerativeAI(
     model=LLM_MODEL, google_api_key=GOOGLE_API_KEY, temperature=0
@@ -37,4 +43,7 @@ def generate_answer(query, documents):
         for doc in documents
     )
 
-    return generation_chain.invoke({"context": context, "query": query})
+    return generation_chain.invoke(
+        {"context": context, "query": query},
+        config={"callbacks": [langfuse_handler]}
+    )
