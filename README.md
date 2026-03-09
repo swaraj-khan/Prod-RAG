@@ -101,6 +101,10 @@ Click to watch the video
     Ensure environment variables are present:
     *   `GOOGLE_API_KEY`
     *   `COHERE_API_KEY`
+    *   `LANGFUSE_SECRET_KEY`
+    *   `LANGFUSE_PUBLIC_KEY`
+    *   `LANGFUSE_BASE_URL`
+
 
 4.  **Run the Application**:
     ```bash
