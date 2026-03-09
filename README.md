@@ -62,9 +62,7 @@ The system implements the following metrics for every generated response:
 
 ## Demo
 
-![alt text](RAG-Prod-V1.mp4)
-
-![alt text](UI-1.png)
+<video src="https://www.youtube.com/watch?v=qBCJLr9mp2A" controls width="100%"></video>
 
 
 ### RAGAS Evaluation Metrics
