@@ -79,7 +79,7 @@ This observability layer enables detailed debugging, performance monitoring, and
 
 [![Watch the Demo](https://img.youtube.com/vi/qBCJLr9mp2A/0.jpg)](https://www.youtube.com/watch?v=qBCJLr9mp2A)
 
-Click to watch the video
+Click to watch the video ⬆️⬆️⬆️
 ---
 
 ## Main Interface
