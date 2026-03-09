@@ -58,19 +58,24 @@ The system implements the following metrics for every generated response:
 
 ## Application Interface
 
-### Main Interface
-
 ## Demo
 
-<video src="https://www.youtube.com/watch?v=qBCJLr9mp2A" controls width="100%"></video>
+[![Watch the Demo](https://img.youtube.com/vi/qBCJLr9mp2A/0.jpg)](https://www.youtube.com/watch?v=qBCJLr9mp2A)
 
+Click to watch the video
+---
 
-### RAGAS Evaluation Metrics
+## Main Interface
 
-![alt text](UI-2.png)
+![Main Interface](Media/UI-1.png)
 
-![alt text](UI-3.png)
+---
 
+## RAGAS Evaluation Metrics
+
+![RAGAS Metrics 1](Media/UI-2.png)
+
+![RAGAS Metrics 2](Media/UI-3.png)
 
 ## Installation and Execution
 
