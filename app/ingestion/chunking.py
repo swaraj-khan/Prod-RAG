@@ -9,9 +9,19 @@ def chunk_documents(documents: List[Document]) -> List[Document]:
     )
 
     chunked_documents = splitter.split_documents(documents)
+    
+    valid_chunks = []
+    filtered = 0
+    for doc in chunked_documents:
+        content = doc.page_content.strip()
+        if len(content) >= 100:
+            valid_chunks.append(doc)
+        else:
+            filtered += 1
+    if filtered > 0:
+        print(f"Filtered {filtered} tiny chunks")
 
-    # Add a unique chunk_id to each chunk
-    for i, doc in enumerate(chunked_documents):
+    for i, doc in enumerate(valid_chunks):
         doc.metadata["chunk_id"] = i
 
-    return chunked_documents
+    return valid_chunks

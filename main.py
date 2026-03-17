@@ -54,17 +54,29 @@ def process_uploaded_files(uploaded_files):
             with open(file_path, "wb") as f:
                 f.write(uploaded_file.getbuffer())
 
-            raw_docs.extend(load_document(file_path))
+            file_docs = load_document(file_path)
+            raw_docs.extend(file_docs)
 
-        if raw_docs:
-            with st.spinner("Chunking and ingesting documents..."):
-                chunked_docs = chunk_documents(raw_docs)
-                ingest_documents(chunked_docs)
+        if not raw_docs:
+            st.warning("No valid documents loaded from uploaded files.")
+            st.rerun()
+            return
 
-                st.success("Documents ingested successfully!")
+        with st.spinner("Chunking documents..."):
+            chunked_docs = chunk_documents(raw_docs)
 
-                all_docs = load_all_documents_from_vectorstore()
-                st.session_state.retrieval_chain = RetrievalChain(all_docs)
+        if not chunked_docs:
+            st.warning("No valid chunks after processing. Check your documents.")
+            st.rerun()
+            return
+
+        with st.spinner("Ingesting to vectorstore..."):
+            ingest_documents(chunked_docs)
+
+            st.success("Documents ingested successfully!")
+
+            all_docs = load_all_documents_from_vectorstore()
+            st.session_state.retrieval_chain = RetrievalChain(all_docs)
 
 
 st.title("📄 Prod-RAG: Production-Ready RAG System")
@@ -122,7 +134,6 @@ if query := st.chat_input("Ask a question about your documents"):
 
             answer = generate_answer(query, reranked_docs)
 
-            # Flush Langfuse traces to ensure they're sent
             langfuse.flush()
 
             st.markdown(answer)

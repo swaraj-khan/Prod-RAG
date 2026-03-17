@@ -25,4 +25,15 @@ def load_document(file_path: str) -> List[Document]:
         print(f"Unsupported file type: {extension}")
         return []
 
-    return loader.load()
+    docs = loader.load()
+    text_docs = []
+    filtered = 0
+    for doc in docs:
+        content = doc.page_content.strip()
+        if content and len(content) >= 50:
+            text_docs.append(doc)
+        else:
+            filtered += 1
+    if filtered > 0:
+        print(f"Filtered {filtered} low-quality documents from {os.path.basename(file_path)}")
+    return text_docs

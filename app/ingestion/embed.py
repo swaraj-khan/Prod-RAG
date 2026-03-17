@@ -19,6 +19,20 @@ def get_vectorstore():
     return vectordb
 
 def ingest_documents(documents):
-    vectordb = get_vectorstore()
-    vectordb.add_documents(documents)
-    vectordb.persist()
+    valid_docs = []
+    filtered = 0
+    for doc in documents:
+        content = doc.page_content.strip()
+        if content and len(content) >= 50:
+            valid_docs.append(doc)
+        else:
+            filtered += 1
+    if filtered > 0:
+        print(f"Filtered {filtered} invalid documents before embedding")
+    if valid_docs:
+        vectordb = get_vectorstore()
+        vectordb.add_documents(valid_docs)
+        vectordb.persist()
+        print(f"Ingested {len(valid_docs)} valid documents")
+    else:
+        print("No valid documents to ingest")
