@@ -77,7 +77,8 @@ This observability layer enables detailed debugging, performance monitoring, and
 
 ## Demo
 
-[![Watch the Demo](https://img.youtube.com/vi/qBCJLr9mp2A/0.jpg)](https://www.youtube.com/watch?v=qBCJLr9mp2A)
+
+<video src="RAG-Prod-V1-ezgif.com-gif-maker.mp4" controls width="100%"></video>
 
 Click to watch the video ⬆️⬆️⬆️
 ---
